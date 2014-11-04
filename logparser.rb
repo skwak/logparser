@@ -1,3 +1,10 @@
+# Gold
+#
+# Parse how many requests happen each minute.
+# Format the key to be a human readable string to represent the time with minutes.
+#
+# {"2014-10-13-9:03"=>1, "2014-10-13-9:04"=>21, "2014-10-13-9:05"=>16}
+
 require 'open-uri'
 require 'time'
 require 'date'
@@ -23,7 +30,7 @@ class LogParser
 
   def parse_dates
     @dates.each do |date|
-      @parsed_times << DateTime.parse(date).strftime("%s")
+      @parsed_times << DateTime.parse(date).strftime("%Y-%m-%d-%H:%M")
     end
   end
 
@@ -37,8 +44,8 @@ class LogParser
 end
 
 new_parse = LogParser.new('https://raw.githubusercontent.com/Ada-Developers-Academy/daily-curriculum/master/moar_work/log-parser/sample.log')
-# puts new_parse.count_words 1200, bronze complete
 new_parse.get_dates
 new_parse.parse_dates
 new_parse.make_hash
-# puts new_parse.request_hash, silver complete
+puts new_parse.request_hash
+#gold complete
