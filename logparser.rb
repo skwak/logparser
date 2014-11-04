@@ -46,6 +46,9 @@ class LogParser
     @paths = @log_file.scan(/GET\s"\/.*"/)
   end
 
+  def format_paths
+  end
+
 end
 
 new_parse = LogParser.new('https://raw.githubusercontent.com/Ada-Developers-Academy/daily-curriculum/master/moar_work/log-parser/sample.log')
@@ -55,4 +58,5 @@ new_parse.make_hash
 new_parse.request_hash
 new_parse.get_paths
 puts new_parse.paths
+
 #gold complete
