@@ -47,6 +47,9 @@ class LogParser
   end
 
   def format_paths
+    @paths.each do |path|
+      path.delete! "GET "
+    end
   end
 
 end
@@ -57,6 +60,7 @@ new_parse.parse_dates
 new_parse.make_hash
 new_parse.request_hash
 new_parse.get_paths
+new_parse.format_paths
 puts new_parse.paths
 
 #gold complete
