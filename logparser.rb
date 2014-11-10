@@ -20,6 +20,7 @@ class LogParser
     @log_file = open(@file) {|f| f.read }
     @request_hash = {}
     @paths = []
+    @date_hash = {}
   end
 
   def count_words
@@ -36,7 +37,7 @@ class LogParser
     end
   end
 
-  def make_hash
+ def make_hash
     @parsed_times.each do |time|
       @request_hash[time] = @parsed_times.grep(time).count
     end
@@ -52,6 +53,12 @@ class LogParser
     end
   end
 
+  #platinum
+  
+  def platinum_paths
+    @log_file.scan(/GET\s"\/.*$/)
+  end
+
 end
 
 new_parse = LogParser.new('https://raw.githubusercontent.com/Ada-Developers-Academy/daily-curriculum/master/moar_work/log-parser/sample.log')
@@ -59,8 +66,6 @@ new_parse.get_dates
 new_parse.parse_dates
 new_parse.make_hash
 new_parse.request_hash
-new_parse.get_paths
-new_parse.format_paths
-puts new_parse.paths
-
 #gold complete
+#start platinum:
+puts new_parse.platinum_paths
